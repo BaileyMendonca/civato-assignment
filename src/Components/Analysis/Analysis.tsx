@@ -47,7 +47,7 @@ function Analysis(props: any) {
                 setAvailableProperties(current => [...current, "Single Dwelling House"]);
                 
             }
-            if(zoneValue == 2 || zoneValue == 3 && props.sizeValue >= 500){ 
+            if((zoneValue == 2 || zoneValue == 3) && props.sizeValue >= 500){ 
                 setAvailableProperties(current => [...current, "Apartment Property"]);
             }
             if(zoneValue == 3 && sizeValue >= 1000){
