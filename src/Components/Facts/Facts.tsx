@@ -2,6 +2,7 @@ import React, { ChangeEvent, useState } from 'react';
 import './Facts.css';
 import DropdownList from "react-widgets/DropdownList";
 import "react-widgets/styles.css";
+import Analysis from '../Analysis/Analysis';
 
 
 //This is the main collection of the Facts
@@ -10,25 +11,14 @@ function Facts() {
 
   const [zoneValue, setZoneValue] = useState(1);
   const [sizeValue, setSizeValue] = useState(0);
-  const [floodVlaue, setFloodValue] = useState(false);
+  const [floodValue, setFloodValue] = useState(false);
  
  const handleSizeInputChange = (event: ChangeEvent<HTMLInputElement>) => { 
     setSizeValue(parseInt(event.target.value));
   }
 
   const handleFloodInputChange = () => { 
-    setFloodValue(!floodVlaue);
-  }
-
-  const confirmDetails = (size: number, zone: number, flooding: boolean) =>  {
-    var isInFloodingZone: string;
-    if(flooding){
-    isInFloodingZone = 'Is in a flooding zone';
-    }
-    else { 
-      isInFloodingZone = 'Is not in a flooding zone';
-    }
-    alert('Processing with the following details \n' + size + ' Meters Squared ' + '\n' + zone + '\n' + isInFloodingZone);
+    setFloodValue(!floodValue);
   }
 
   return (
@@ -39,6 +29,7 @@ function Facts() {
           <DropdownList
           defaultValue="Please select a zone"
           value={zoneValue}
+          dataKey = "id"
           textField="zone"
           onChange={(nextValue) => setZoneValue(nextValue.id)}
           data={[
@@ -59,9 +50,10 @@ function Facts() {
       </div>
 
       <div> 
-        <p> Is the house in a flooding zone <input type="checkbox" checked = {floodVlaue} onChange={handleFloodInputChange}/> </p>
+        <p> Is the house in a flooding zone <input type="checkbox" checked = {floodValue} onChange={handleFloodInputChange}/> </p>
       </div>
-      <button onClick={() => confirmDetails(sizeValue, zoneValue, floodVlaue)}>  Confirm </button>
+      <Analysis floodValue={floodValue} sizeValue={sizeValue} zoneValue={zoneValue}/>
+      
     </div>
     
   );
