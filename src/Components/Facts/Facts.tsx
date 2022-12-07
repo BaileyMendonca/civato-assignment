@@ -9,6 +9,8 @@ import Analysis from '../Analysis/Analysis';
 //This components only purpose is to ensure the correct layout of our comps
 function Facts() {
 
+
+  
   const [zoneValue, setZoneValue] = useState(1);
   const [sizeValue, setSizeValue] = useState(0);
   const [floodValue, setFloodValue] = useState(false);
@@ -22,34 +24,38 @@ function Facts() {
   }
 
   return (
-    <div> 
+    <div className='Facts__Main'> 
+      <div className='Facts__PropertyFacts'>
+        <h3> Propery Facts </h3>
         <div> 
           <p> What zone is your house in </p>
           <>
           <DropdownList
-            defaultValue="Please select a zone"
-            value={zoneValue}
-            dataKey = "id"
-            textField="zone"
-            onChange={(nextValue) => setZoneValue(nextValue.id)}
-            data={[
-            {id: 1, zone: "Zone 1" },
-            {id: 2, zone: "Zone 2" },
-            {id: 3, zone: "Zone 3" },
-          ]}
-        />
-        </>
-      </div>
+              defaultValue="Please select a zone"
+              value={zoneValue}
+              dataKey = "id"
+              textField="zone"
+              onChange={(nextValue) => setZoneValue(nextValue.id)}
+              data={[
+              {id: 1, zone: "Zone 1" },
+              {id: 2, zone: "Zone 2" },
+              {id: 3, zone: "Zone 3" },
+            ]}
+            className='Facts__DropDown'
+          />
+          </>
+        </div>
 
-      <div> 
-        <p>Please enter the size of your property in meters squared </p>
-          <label>
-              Size: 
-              <input type="text" name="property__size" onChange={handleSizeInputChange} />
-          </label>
-      </div>
-      <div> 
-        <p> Is the house in a flooding zone <input type="checkbox" checked = {floodValue} onChange={handleFloodInputChange}/> </p>
+        <div> 
+          <p>Please enter the size of your property in meters squared </p>
+            <label>
+                <input type="text" name="property__size" onChange={handleSizeInputChange} className='Facts__Size__Input' />
+            </label>
+        </div>
+        <div> 
+          <p> Is the house in a flooding zone <input type="checkbox" checked = {floodValue} onChange={handleFloodInputChange}/> </p>
+        </div>
+        
       </div>
       <Analysis id={1} floodValue={floodValue} sizeValue={sizeValue} zoneValue={zoneValue}/>
     </div>
