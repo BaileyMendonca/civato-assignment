@@ -52,7 +52,7 @@ function Facts() {
       <div> 
         <p> Is the house in a flooding zone <input type="checkbox" checked = {floodValue} onChange={handleFloodInputChange}/> </p>
       </div>
-      <Analysis floodValue={floodValue} sizeValue={sizeValue} zoneValue={zoneValue}/>
+      <Analysis id={1} floodValue={floodValue} sizeValue={sizeValue} zoneValue={zoneValue}/>
       
     </div>
     

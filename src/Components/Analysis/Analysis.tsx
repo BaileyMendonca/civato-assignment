@@ -1,7 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import DropdownList from "react-widgets/DropdownList";
 import "react-widgets/styles.css";
-import { type } from 'os';
 
 
 //This analysis section takes the props from and processes theam to decide if they meet the requirements
@@ -11,6 +10,7 @@ function Analysis(props: any) {
     const floodValue = props.floodValue;
     const sizeValue = props.sizeValue;
     const zoneValue = props.zoneValue;
+    const id = props.id;
     const [availableProperties, setAvailableProperties] = useState<string[]>([]);
     
     console.log(floodValue + " and " +  sizeValue + " and " + zoneValue)
@@ -48,9 +48,9 @@ function Analysis(props: any) {
 
   return (
     <div> 
-        <button onClick={() => confirmDetails(sizeValue, zoneValue, floodValue)}>  Confirm </button>
+        <button name='submitButton' onClick={() => confirmDetails(sizeValue, zoneValue, floodValue)}>Confirm</button>
         <p> Based on your property facts, the allowed buildings may be built on your property</p>
-        <ol>
+        <ol data-testid={`analysis-${id}`}>
           {availableProperties.map(type => (<li>{type}</li>))}
         </ol>
 
