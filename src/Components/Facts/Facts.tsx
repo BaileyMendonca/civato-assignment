@@ -27,19 +27,19 @@ function Facts() {
           <p> What zone is your house in </p>
           <>
           <DropdownList
-          defaultValue="Please select a zone"
-          value={zoneValue}
-          dataKey = "id"
-          textField="zone"
-          onChange={(nextValue) => setZoneValue(nextValue.id)}
-          data={[
+            defaultValue="Please select a zone"
+            value={zoneValue}
+            dataKey = "id"
+            textField="zone"
+            onChange={(nextValue) => setZoneValue(nextValue.id)}
+            data={[
             {id: 1, zone: "Zone 1" },
             {id: 2, zone: "Zone 2" },
             {id: 3, zone: "Zone 3" },
-            ]}
-          />
-          </>
-        </div>
+          ]}
+        />
+        </>
+      </div>
 
       <div> 
         <p>Please enter the size of your property in meters squared </p>
@@ -48,12 +48,10 @@ function Facts() {
               <input type="text" name="property__size" onChange={handleSizeInputChange} />
           </label>
       </div>
-
       <div> 
         <p> Is the house in a flooding zone <input type="checkbox" checked = {floodValue} onChange={handleFloodInputChange}/> </p>
       </div>
       <Analysis id={1} floodValue={floodValue} sizeValue={sizeValue} zoneValue={zoneValue}/>
-      
     </div>
     
   );

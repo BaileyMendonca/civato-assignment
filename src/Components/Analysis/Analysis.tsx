@@ -6,28 +6,37 @@ import "react-widgets/styles.css";
 //This analysis section takes the props from and processes theam to decide if they meet the requirements
 //and what type of house they can do
 function Analysis(props: any) {
-
+    //Defining the props for ease of use
     const floodValue = props.floodValue;
     const sizeValue = props.sizeValue;
     const zoneValue = props.zoneValue;
     const id = props.id;
+    //Creating a state for the dynamic array that holds the available properties
     const [availableProperties, setAvailableProperties] = useState<string[]>([]);
-    
-    console.log(floodValue + " and " +  sizeValue + " and " + zoneValue)
 
+    //Confirm details changes the state of the array and provives a popup so that users can see 
+    //that they have definitely entered the right details
     const confirmDetails = (size: number, zone: number, flooding: boolean) =>  {
+        //error checking to ensure that size is a valid number
+        if(isNaN(size)) { 
+            alert('Please enter a valid size');
+            return;
+        }
+        //Changing the bool for flooding into readable english
         var isInFloodingZone: string;
         if(flooding){
-        isInFloodingZone = 'Is in a flooding zone';
+            isInFloodingZone = 'Is in a flooding zone';
         }
         else { 
           isInFloodingZone = 'Is not in a flooding zone';
         }
         alert('Processing with the following details \n' + size + ' Meters Squared ' + '\n' + zone + '\n' + isInFloodingZone);
+        //clears the previous list so that the new properties can be added. 
         setAvailableProperties([]);
         propertyFactCheckHandler();
       }
 
+    
     const propertyFactCheckHandler = () => { 
         if(floodValue){
             setAvailableProperties(current => [...current, "No properties can be added to a flood zone."]);
