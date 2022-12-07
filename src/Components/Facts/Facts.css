@@ -1,0 +1,15 @@
+.Facts__Main { 
+    color: #fcfdff; 
+    display: grid;
+    padding-left: 23%;
+    padding-right: 23%;
+    justify-content: center;
+    float: right;
+
+
+
+}
+
+.Facts__Size__Input{ 
+    text-align: center; 
+}

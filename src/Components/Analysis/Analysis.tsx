@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
 import DropdownList from "react-widgets/DropdownList";
 import "react-widgets/styles.css";
+import './Analysis.css'; 
 
 
 //This analysis section takes the props from and processes theam to decide if they meet the requirements
@@ -56,13 +57,14 @@ function Analysis(props: any) {
     }
 
   return (
-    <div> 
-        <button name='submitButton' onClick={() => confirmDetails(sizeValue, zoneValue, floodValue)}>Confirm</button>
+    <div className='Analysis__Main'> 
+     <button name='submitButton' onClick={() => confirmDetails(sizeValue, zoneValue, floodValue)} className='Analysis__Submit__Button'>Confirm</button>
+     <hr></hr>
+        <h3> Analysis Results</h3>
         <p> Based on your property facts, the allowed buildings may be built on your property</p>
-        <ol data-testid={`analysis-${id}`}>
+        <ul data-testid={`analysis-${id}`} className='Analysis__List' >
           {availableProperties.map(type => (<li>{type}</li>))}
-        </ol>
-
+        </ul>
     </div>
     
   );
