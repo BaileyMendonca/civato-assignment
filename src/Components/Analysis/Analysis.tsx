@@ -6,11 +6,13 @@ import './Analysis.css';
 
 //This analysis section takes the props from and processes theam to decide if they meet the requirements
 //and what type of house they can do
-function Analysis(props: any) {
+type Props = {floodValue: boolean, sizeValue: number, zoneValue: number, numberValid: boolean, id: number}
+function Analysis(props: Props) {
     //Defining the props for ease of use
     const floodValue = props.floodValue;
     const sizeValue = props.sizeValue;
     const zoneValue = props.zoneValue;
+    const isDisabled = !props.numberValid;
     const id = props.id;
     //Creating a state for the dynamic array that holds the available properties
     const [availableProperties, setAvailableProperties] = useState<string[]>([]);
@@ -18,11 +20,7 @@ function Analysis(props: any) {
     //Confirm details changes the state of the array and provives a popup so that users can see 
     //that they have definitely entered the right details
     const confirmDetails = (size: number, zone: number, flooding: boolean) =>  {
-        //error checking to ensure that size is a valid number
-        if(isNaN(size)) { 
-            alert('Please enter a valid size');
-            return;
-        }
+        
         //Changing the bool for flooding into readable english
         var isInFloodingZone: string;
         if(flooding){
@@ -36,8 +34,9 @@ function Analysis(props: any) {
         setAvailableProperties([]);
         propertyFactCheckHandler();
       }
-
     
+    //double check if this way of updating is safer
+    //setAvailableProperties((prevState -> { return { ...prevState, "No properties can be added to a flood zone."}}))
     const propertyFactCheckHandler = () => { 
         if(floodValue){
             setAvailableProperties(current => [...current, "No properties can be added to a flood zone."]);
@@ -58,7 +57,7 @@ function Analysis(props: any) {
 
   return (
     <div className='Analysis__Main'> 
-     <button name='submitButton' onClick={() => confirmDetails(sizeValue, zoneValue, floodValue)} className='Analysis__Submit__Button'>Confirm</button>
+     <button name='submitButton' onClick={() => confirmDetails(sizeValue, zoneValue, floodValue)} className='Analysis__Submit__Button' disabled={isDisabled}>Confirm</button>
      <hr></hr>
         <h3> Analysis Results</h3>
         <p> Based on your property facts, the allowed buildings may be built on your property</p>
